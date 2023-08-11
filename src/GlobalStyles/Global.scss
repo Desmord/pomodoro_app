@@ -1,0 +1,17 @@
+@import './Settings.scss';
+
+h1 {
+    @include font-h1
+}
+
+h2 {
+    @include font-h2
+}
+
+h3 {
+    @include font-h3
+}
+
+h3 {
+    @include font-h4
+}
