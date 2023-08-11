@@ -9,3 +9,9 @@ export const FONT_FAMILY = {
     ROBOTO: `roboto`,
     SPACE_MONO: `space`,
 }
+
+export const SELECTED_OPTION = {
+    POMODORO: `pomodoro`,
+    SHORT_BREAK: `short break`,
+    LONG_BREAK: `long break`,
+}

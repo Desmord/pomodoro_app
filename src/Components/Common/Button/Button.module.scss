@@ -1,0 +1,47 @@
+@import '../../../GlobalStyles/Settings.scss';
+
+.container {
+    @include font-body-1;
+
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-content: center;
+    color: $color-blue;
+    border-radius: 26px;
+    transition: $transition;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+}
+
+.orange {
+    background-color: $color-orange;
+
+    &:hover {
+        background-color: lighten($color-orange, 10);
+    }
+}
+
+.aquamarine {
+    background-color: $color-aquamarine;
+
+    &:hover {
+        background-color: lighten($color-aquamarine, 10);
+    }
+}
+
+.violet {
+    background-color: $color-violet;
+
+    &:hover {
+        background-color: lighten($color-violet, 10);
+    }
+}
+
+.is-not-active {
+    color: $color-grey;
+    background-color: transparent;
+}
