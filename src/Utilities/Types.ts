@@ -3,3 +3,9 @@ export const COLOR_THEMES = {
     AQUARMARINE: `aquamarine`,
     VIOLET: `violet`,
 }
+
+export const FONT_FAMILY = {
+    KUMBH_SANS: `kumbh`,
+    ROBOTO: `roboto`,
+    SPACE_MONO: `space`,
+}
