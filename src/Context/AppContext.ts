@@ -8,6 +8,12 @@ type AppContextType = {
     setFontFamily: Function,
     selectedOption: string,
     setSelectedOption: Function,
+    pomodoroTime: number,
+    setPomodoroTime: Function,
+    shortBreakTime: number,
+    setShortBreakTime: Function,
+    longBreakTime: number,
+    setLongBreakTime: Function,
 }
 
 export const AppContext = createContext<AppContextType>({
@@ -16,5 +22,11 @@ export const AppContext = createContext<AppContextType>({
     fontFamily: FONT_FAMILY.KUMBH_SANS,
     setFontFamily: () => { },
     selectedOption: SELECTED_OPTION.POMODORO,
-    setSelectedOption: () => { }
+    setSelectedOption: () => { },
+    pomodoroTime: 0,
+    setPomodoroTime: () => { },
+    shortBreakTime: 0,
+    setShortBreakTime: () => { },
+    longBreakTime: 0,
+    setLongBreakTime: () => { }
 });
