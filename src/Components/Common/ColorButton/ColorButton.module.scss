@@ -1,0 +1,55 @@
+@import '../../../GlobalStyles/Settings.scss';
+
+$width: 40px;
+$height: 40px;
+$opacity: 0.73;
+$svg-size: 20px;
+
+$hover-oval-width: 50px;
+$hover-oval-height: 50px;
+$hover-oval-border-width: 1px;
+
+.container {
+    position: relative;
+    width: $width;
+    height: $width;
+    border-radius: 50%;
+    font-size: 18px;
+    display: grid;
+    place-content: center;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:hover {
+        &::after {
+            content: "";
+            position: absolute;
+            top: calc((($width - $hover-oval-width) / 2) - $hover-oval-border-width);
+            left: calc((($height - $hover-oval-height) / 2) - $hover-oval-border-width);
+            width: $hover-oval-width;
+            height: $hover-oval-height;
+            border-radius: 50%;
+            border: $hover-oval-border-width solid $color-grey;
+            opacity: $opacity;
+        }
+    }
+
+    svg {
+        width: $svg-size;
+        aspect-ratio: 1/1;
+    }
+}
+
+.color-orange {
+    background-color: $color-orange;
+}
+
+.color-aquarmarine {
+    background-color: $color-aquamarine;
+}
+
+.color-violet {
+    background-color: $color-violet;
+}
