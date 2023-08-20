@@ -8,3 +8,17 @@
     place-content: center;
     color: $color-cyanosed;
 }
+
+@include for-tablet-big {
+    .container {
+        padding: 80px;
+        width: calc(100vw - 160px);
+    }
+}
+
+@include for-phone {
+    .container {
+        padding: 32px;
+        width: calc(100vw - 64px);
+    }
+}

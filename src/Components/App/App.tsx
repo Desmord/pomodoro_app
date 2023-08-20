@@ -3,6 +3,7 @@ import { COLOR_THEMES, FONT_FAMILY, SELECTED_OPTION } from "../../Utilities/Type
 import { AppContext } from "../../Context/AppContext"
 
 import Title from "../Title/Title";
+import Menu from "../Menu/Menu";
 
 import styles from './App.module.scss';
 
@@ -30,6 +31,7 @@ const App = () => {
                         fontFamily === FONT_FAMILY.SPACE_MONO ? styles[`font-space`] : ``
             }>
                 <Title />
+                <Menu />
             </div>
         </AppContext.Provider>
     )

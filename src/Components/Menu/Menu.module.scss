@@ -1,0 +1,20 @@
+@import '../../GlobalStyles/Settings.scss';
+
+.container {
+    margin: 0 auto;
+    width: 370px;
+    height: 63px;
+    padding: 7px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background-color: $color-dark-blue;
+    border-radius: 32px;
+    box-sizing: border-box;
+}
+
+
+@include for-phone {
+    .container {
+        width: 330px;
+    }
+}
