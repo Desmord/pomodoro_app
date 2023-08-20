@@ -15,3 +15,7 @@ h3 {
 h3 {
     @include font-h4
 }
+
+body {
+    background-color: $color-dark-blue;
+}

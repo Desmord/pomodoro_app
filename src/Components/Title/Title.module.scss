@@ -1,0 +1,10 @@
+@import '../../GlobalStyles/Settings.scss';
+
+.container {
+    @include font-body-3;
+    padding: 50px;
+    width: calc(100vw - 100px);
+    display: grid;
+    place-content: center;
+    color: $color-cyanosed;
+}

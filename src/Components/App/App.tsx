@@ -2,6 +2,8 @@ import { useState } from "react"
 import { COLOR_THEMES, FONT_FAMILY, SELECTED_OPTION } from "../../Utilities/Types"
 import { AppContext } from "../../Context/AppContext"
 
+import Title from "../Title/Title";
+
 import styles from './App.module.scss';
 
 const App = () => {
@@ -27,6 +29,7 @@ const App = () => {
                     fontFamily === FONT_FAMILY.KUMBH_SANS ? styles[`font-kumbh`] :
                         fontFamily === FONT_FAMILY.SPACE_MONO ? styles[`font-space`] : ``
             }>
+                <Title />
             </div>
         </AppContext.Provider>
     )
