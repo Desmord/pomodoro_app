@@ -4,6 +4,7 @@ import { AppContext } from "../../Context/AppContext"
 
 import Title from "../Title/Title";
 import Menu from "../Menu/Menu";
+import Clock from "../Clock/Clock";
 
 import styles from './App.module.scss';
 
@@ -16,6 +17,10 @@ const App = () => {
     const [shortBreakTime, setShortBreakTime] = useState(5);
     const [longBreakTime, setLongBreakTime] = useState(10);
 
+    const [currentPomodoroTime, setCurrentPomodoroTime] = useState(0)
+    const [currentShortBreakTime, setCurrentShortBreakTime] = useState(0)
+    const [currentLongBreakTime, setCurrentLongBreakTime] = useState(0);
+
     return (
         <AppContext.Provider value={({
             colorTheme, setColorTheme,
@@ -23,7 +28,10 @@ const App = () => {
             selectedOption, setSelectedOption,
             pomodoroTime, setPomodoroTime,
             shortBreakTime, setShortBreakTime,
-            longBreakTime, setLongBreakTime
+            longBreakTime, setLongBreakTime,
+            currentPomodoroTime, setCurrentPomodoroTime,
+            currentShortBreakTime, setCurrentShortBreakTime,
+            currentLongBreakTime, setCurrentLongBreakTime,
         })}>
             <div className={
                 fontFamily === FONT_FAMILY.ROBOTO ? styles[`font-roboto`] :
@@ -32,6 +40,7 @@ const App = () => {
             }>
                 <Title />
                 <Menu />
+                <Clock />
             </div>
         </AppContext.Provider>
     )

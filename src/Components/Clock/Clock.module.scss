@@ -1,0 +1,84 @@
+@import '../../GlobalStyles/Settings.scss';
+
+.container {
+    position: relative;
+    margin: 45px auto;
+    width: 410px;
+    height: 410px;
+    box-sizing: border-box;
+    display: grid;
+    place-content: center;
+    color: $color-cyanosed;
+    border-radius: 50%;
+    background: $color-linear-gradient;
+    filter:
+        drop-shadow(-50px -50px 100px hsl(234, 40%, 25%)) drop-shadow(50px 50px 100px hsl(234, 45%, 13%));
+}
+
+.time {
+    @include font-h1;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-content: center;
+    z-index: 5;
+}
+
+.pause {
+    @include font-h3;
+    position: absolute;
+    top: 66%;
+    left: 0%;
+    width: 100%;
+    display: grid;
+    place-content: center;
+    transition: $transition;
+    z-index: 5;
+
+    &:hover {
+        cursor: pointer;
+        color: $color-white;
+    }
+}
+
+.innerOval {
+    position: absolute;
+    left: 22px;
+    top: 22px;
+    width: 366px;
+    height: 366px;
+    border-radius: 50%;
+    background-color: $color-dark-blue;
+    z-index: 1;
+}
+
+.arc-canvas-style {
+    width: 366px;
+    height: 366px;
+    z-index: 2;
+    transform: rotate(-90deg);
+}
+
+
+@include for-phone {
+    .container {
+        width: 300px;
+        height: 300px;
+    }
+
+
+    .innerOval {
+        left: 16px;
+        top: 16px;
+        width: 267px;
+        height: 267px;
+    }
+
+    .arc-canvas-style {
+        width: 267px;
+        height: 267px;
+    }
+}

@@ -1,6 +1,7 @@
 @import '../../GlobalStyles/Settings.scss';
 
 .container {
+    position: relative;
     margin: 0 auto;
     width: 370px;
     height: 63px;
@@ -10,6 +11,7 @@
     background-color: $color-dark-blue;
     border-radius: 32px;
     box-sizing: border-box;
+    z-index: 2;
 }
 
 

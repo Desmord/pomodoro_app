@@ -14,6 +14,12 @@ type AppContextType = {
     setShortBreakTime: Function,
     longBreakTime: number,
     setLongBreakTime: Function,
+    currentPomodoroTime: number,
+    setCurrentPomodoroTime: Function,
+    currentShortBreakTime: number,
+    setCurrentShortBreakTime: Function,
+    currentLongBreakTime: number,
+    setCurrentLongBreakTime: Function,
 }
 
 export const AppContext = createContext<AppContextType>({
@@ -28,5 +34,11 @@ export const AppContext = createContext<AppContextType>({
     shortBreakTime: 0,
     setShortBreakTime: () => { },
     longBreakTime: 0,
-    setLongBreakTime: () => { }
+    setLongBreakTime: () => { },
+    currentPomodoroTime: 0,
+    setCurrentPomodoroTime: () => { },
+    currentShortBreakTime: 0,
+    setCurrentShortBreakTime: () => { },
+    currentLongBreakTime: 0,
+    setCurrentLongBreakTime: () => { },
 });
