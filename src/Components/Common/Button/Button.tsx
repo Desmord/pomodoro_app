@@ -10,7 +10,7 @@ import styles from './Button.module.scss'
  * @param text string
  * @returns 
  */
-const Button = ({ text, }: { text: string, }) => {
+const Button = ({ text }: { text: string, }) => {
     const theme = useContext(AppContext);
 
     const handleClick = () => theme.setSelectedOption(text)

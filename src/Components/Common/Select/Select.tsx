@@ -9,13 +9,13 @@ import styles from './Select.module.scss';
  * @param param0  string
  * @returns 
  */
-const Select = ({ text, }: { text: string, }) => {
+const Select = ({ text }: { text: string, }) => {
 
     const app = useContext(AppContext);
 
     const getValue = () => {
 
-        switch (app.selectedOption) {
+        switch (text) {
             case SELECTED_OPTION.POMODORO:
                 return app.pomodoroTime;
             case SELECTED_OPTION.SHORT_BREAK:
@@ -28,7 +28,7 @@ const Select = ({ text, }: { text: string, }) => {
 
     const add = () => {
 
-        switch (app.selectedOption) {
+        switch (text) {
             case SELECTED_OPTION.POMODORO:
                 app.setPomodoroTime((prev: number) => prev + 1)
                 break;
@@ -44,7 +44,7 @@ const Select = ({ text, }: { text: string, }) => {
 
     const substract = () => {
 
-        switch (app.selectedOption) {
+        switch (text) {
             case SELECTED_OPTION.POMODORO:
                 app.setPomodoroTime((prev: number) => prev - 1 < 0 ? 0 : prev - 1)
                 break;

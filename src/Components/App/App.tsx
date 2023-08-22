@@ -5,6 +5,7 @@ import { AppContext } from "../../Context/AppContext"
 import Title from "../Title/Title";
 import Menu from "../Menu/Menu";
 import Clock from "../Clock/Clock";
+import Settings from "../Settings/Settings";
 
 import styles from './App.module.scss';
 
@@ -41,6 +42,7 @@ const App = () => {
                 <Title />
                 <Menu />
                 <Clock />
+                <Settings />
             </div>
         </AppContext.Provider>
     )
