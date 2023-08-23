@@ -14,8 +14,7 @@ const App = () => {
     const [fontFamily, setFontFamily] = useState(FONT_FAMILY.KUMBH_SANS);
     const [selectedOption, setSelectedOption] = useState(SELECTED_OPTION.POMODORO);
 
-    const [pomodoroTime, setPomodoroTime] = useState(10);
-    // const [pomodoroTime, setPomodoroTime] = useState(3600);
+    const [pomodoroTime, setPomodoroTime] = useState(3600);
     const [shortBreakTime, setShortBreakTime] = useState(300);
     const [longBreakTime, setLongBreakTime] = useState(600);
 
