@@ -20,6 +20,8 @@ type AppContextType = {
     setCurrentShortBreakTime: Function,
     currentLongBreakTime: number,
     setCurrentLongBreakTime: Function,
+    timerTimeout: any,
+    setTimerTimeout: Function,
 }
 
 export const AppContext = createContext<AppContextType>({
@@ -41,4 +43,6 @@ export const AppContext = createContext<AppContextType>({
     setCurrentShortBreakTime: () => { },
     currentLongBreakTime: 0,
     setCurrentLongBreakTime: () => { },
+    timerTimeout: null,
+    setTimerTimeout: () => { }
 });

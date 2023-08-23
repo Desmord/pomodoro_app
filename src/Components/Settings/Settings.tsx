@@ -13,7 +13,12 @@ const Settings = () => {
 
     const [isDisplayed, setIsDisplayed] = useState(false);
 
-    const display = () => setIsDisplayed(true)
+    const display = () => {
+        if (theme.timerTimeout) {
+            clearTimeout(theme.timerTimeout)
+        }
+        setIsDisplayed(true)
+    }
 
     const close = () => setIsDisplayed(false)
 

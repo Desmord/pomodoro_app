@@ -17,11 +17,11 @@ const Select = ({ text }: { text: string, }) => {
 
         switch (text) {
             case SELECTED_OPTION.POMODORO:
-                return app.pomodoroTime;
+                return app.pomodoroTime / 60;
             case SELECTED_OPTION.SHORT_BREAK:
-                return app.shortBreakTime;
+                return app.shortBreakTime / 60;
             default:
-                return app.longBreakTime;
+                return app.longBreakTime / 60;
         }
 
     }
@@ -30,13 +30,13 @@ const Select = ({ text }: { text: string, }) => {
 
         switch (text) {
             case SELECTED_OPTION.POMODORO:
-                app.setPomodoroTime((prev: number) => prev + 1)
+                app.setPomodoroTime((prev: number) => prev + 60)
                 break;
             case SELECTED_OPTION.SHORT_BREAK:
-                app.setShortBreakTime((prev: number) => prev + 1)
+                app.setShortBreakTime((prev: number) => prev + 60)
                 break;
             default:
-                app.setLongBreakTime((prev: number) => prev + 1)
+                app.setLongBreakTime((prev: number) => prev + 60)
                 break;
         }
 
@@ -46,13 +46,13 @@ const Select = ({ text }: { text: string, }) => {
 
         switch (text) {
             case SELECTED_OPTION.POMODORO:
-                app.setPomodoroTime((prev: number) => prev - 1 < 0 ? 0 : prev - 1)
+                app.setPomodoroTime((prev: number) => prev - 1 < 0 ? 0 : prev - 60)
                 break;
             case SELECTED_OPTION.SHORT_BREAK:
-                app.setShortBreakTime((prev: number) => prev - 1 < 0 ? 0 : prev - 1)
+                app.setShortBreakTime((prev: number) => prev - 1 < 0 ? 0 : prev - 60)
                 break;
             default:
-                app.setLongBreakTime((prev: number) => prev - 1 < 0 ? 0 : prev - 1)
+                app.setLongBreakTime((prev: number) => prev - 1 < 0 ? 0 : prev - 60)
                 break;
         }
 

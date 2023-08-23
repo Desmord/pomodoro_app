@@ -13,6 +13,10 @@ import styles from './FontButton.module.scss';
 const FontButton = ({ text }: { text: string }) => {
     const theme = useContext(AppContext);
 
+    const changeFont = () => {
+        theme.setFontFamily(text)
+    }
+
     return (
         <div className={`
             ${styles.container}
@@ -20,7 +24,7 @@ const FontButton = ({ text }: { text: string }) => {
                 text === FONT_FAMILY.KUMBH_SANS ? styles[`font-kumbh`] :
                     text === FONT_FAMILY.SPACE_MONO ? styles[`font-space`] : ``}
             ${theme.fontFamily === text ? styles[`active`] : styles[`not-active`]}
-        `}>Aa</div>
+        `} onClick={() => changeFont()}>Aa</div>
     )
 }
 

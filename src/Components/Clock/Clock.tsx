@@ -1,11 +1,26 @@
 import { useState, useEffect, useContext } from 'react';
 import { AppContext } from '../../Context/AppContext';
-import { COLOR_THEMES } from '../../Utilities/Types';
+import { COLOR_THEMES, SELECTED_OPTION } from '../../Utilities/Types';
 
 import styles from './Clock.module.scss';
 
+// przeniesc do CoostomHook
 const Clock = () => {
-    const theme = useContext(AppContext);
+    const {
+        pomodoroTime,
+        currentPomodoroTime,
+        setCurrentPomodoroTime,
+        longBreakTime,
+        currentLongBreakTime,
+        setCurrentLongBreakTime,
+        shortBreakTime,
+        currentShortBreakTime,
+        setCurrentShortBreakTime,
+        colorTheme,
+        selectedOption,
+        timerTimeout,
+        setTimerTimeout,
+    } = useContext(AppContext);
 
     const [buttonText, setButtonText] = useState(`START`);
 
@@ -28,7 +43,7 @@ const Clock = () => {
             ctx.moveTo(0, 0);
             ctx.beginPath();
 
-            switch (theme.colorTheme) {
+            switch (colorTheme) {
                 case COLOR_THEMES.AQUARMARINE:
                     ctx.strokeStyle = aquamarine;
                     break;
@@ -49,17 +64,144 @@ const Clock = () => {
 
     }
 
+    const getMinutes = (seconds: number): string =>
+        `${Math.floor(seconds / 60)}`.length < 2 ?
+            `0${Math.floor(seconds / 60)}` : `${Math.floor(seconds / 60)}`
+
+
+    const getSeconds = (seconds: number): string =>
+        `${seconds - (Math.floor(seconds / 60) * 60)}`.length < 2 ?
+            `0${seconds - (Math.floor(seconds / 60) * 60)}` : `${seconds - (Math.floor(seconds / 60) * 60)}`
+
+
+    const getClockValue = () => {
+
+        switch (selectedOption) {
+            case SELECTED_OPTION.POMODORO:
+                return `
+                    ${getMinutes(pomodoroTime - currentPomodoroTime)}:${getSeconds(pomodoroTime - currentPomodoroTime)}`
+            case SELECTED_OPTION.SHORT_BREAK:
+                return `
+                    ${getMinutes(shortBreakTime - currentShortBreakTime)}:${getSeconds(shortBreakTime - currentShortBreakTime)}`
+            default:
+                return `
+                    ${getMinutes(longBreakTime - currentLongBreakTime)}:F${getSeconds(longBreakTime - currentLongBreakTime)}`
+        }
+
+    }
+
+    const counter = () => {
+
+        clearTimeout(timerTimeout)
+        setTimerTimeout(setTimeout(() => {
+
+            switch (selectedOption) {
+                case SELECTED_OPTION.POMODORO:
+                    setCurrentPomodoroTime((prev: number) => prev + 1)
+                    break;
+                case SELECTED_OPTION.SHORT_BREAK:
+                    setCurrentShortBreakTime((prev: number) => prev + 1)
+                    break;
+                default:
+                    setCurrentLongBreakTime((prev: number) => prev + 1)
+                    break;
+            }
+
+            counter()
+
+        }, 1000))
+
+    }
+
     const handleClick = () => {
-        console.log(`click`)
+
+        if (buttonText === `START`) {
+
+            counter()
+            setButtonText(`PAUSE`)
+
+        } else if (buttonText === `RESTART`) {
+            setCurrentPomodoroTime(0);
+            setCurrentShortBreakTime(0);
+            setCurrentLongBreakTime(0);
+            drawArc(1);
+            setButtonText(`START`)
+        } else {
+
+            if (timerTimeout) {
+                clearTimeout(timerTimeout)
+                setButtonText(`START`)
+            }
+
+        }
+
     }
 
     useEffect(() => {
-        // tutaj odswierzamy rysowanie
-        // zmienna w useState procenty 
-        //      i przy zmianie czasu obliczac procent oobecnie akutalnego,
-        //      wylicanie ile to stopi z 360 i odswirzenie zmiennej w usestate
-        //      i ta funkcjie w komponenecie
-    }, [theme.currentLongBreakTime, theme.currentShortBreakTime, theme.currentPomodoroTime])
+
+        switch (selectedOption) {
+            case SELECTED_OPTION.POMODORO:
+                const percent = parseFloat((currentPomodoroTime / pomodoroTime).toFixed(2)) * 100
+                const angle = Math.floor((percent / 100) * 360);
+
+                angle ? drawArc(angle) : drawArc(1);
+                break;
+
+            case SELECTED_OPTION.SHORT_BREAK:
+                const percentS = parseFloat((currentShortBreakTime / shortBreakTime).toFixed(2)) * 100
+                const angleS = Math.floor((percentS / 100) * 360);
+
+                angleS ? drawArc(angleS) : drawArc(1);
+                break;
+
+            default:
+                const percentL = parseFloat((currentLongBreakTime / longBreakTime).toFixed(2)) * 100
+                const angleL = Math.floor((percentL / 100) * 360);
+
+                angleL ? drawArc(angleL) : drawArc(1);
+                break;
+        }
+        // eslint-disable-next-line
+    }, [
+        currentLongBreakTime,
+        currentShortBreakTime,
+        currentPomodoroTime,
+        colorTheme
+    ])
+
+    useEffect(() => {
+
+        switch (selectedOption) {
+            case SELECTED_OPTION.POMODORO:
+
+                if (currentPomodoroTime === pomodoroTime) {
+                    clearTimeout(timerTimeout)
+                    setButtonText(`RESTART`)
+                }
+                break;
+
+            case SELECTED_OPTION.SHORT_BREAK:
+                if (currentShortBreakTime === shortBreakTime) {
+                    clearTimeout(timerTimeout)
+                    setButtonText(`RESTART`)
+                }
+                break;
+
+            default:
+
+                if (currentLongBreakTime === longBreakTime) {
+                    clearTimeout(timerTimeout)
+                    setButtonText(`RESTART`)
+                }
+                break;
+        }
+
+        // eslint-disable-next-line
+    }, [
+        currentLongBreakTime,
+        currentShortBreakTime,
+        currentPomodoroTime,
+    ])
 
     return (
         <div className={styles.container}>
@@ -70,7 +212,7 @@ const Clock = () => {
                 width={1000}
                 height={1000}>
             </canvas>
-            <div className={styles.time}>17:59</div>
+            <div className={styles.time}>{getClockValue()}</div>
             <div className={styles.pause} onClick={() => handleClick()}>{buttonText}</div>
         </div>
     )

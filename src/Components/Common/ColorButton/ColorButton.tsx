@@ -14,13 +14,17 @@ import styles from './ColorButton.module.scss';
 const ColorButton = ({ color }: { color: string }) => {
     const theme = useContext(AppContext);
 
+    const changeColor = () => {
+        theme.setColorTheme(color)
+    }
+
     return (
         <div className={`
             ${styles.container}
             ${color === COLOR_THEMES.ORANGE ? styles[`color-orange`] :
                 color === COLOR_THEMES.AQUARMARINE ? styles[`color-aquarmarine`] :
                     color === COLOR_THEMES.VIOLET ? styles[`color-violet`] : ``}
-        `}>
+        `} onClick={() => changeColor()}>
             {theme.colorTheme === color ? <MdOutlineDone /> : ``}
         </div>
     )
