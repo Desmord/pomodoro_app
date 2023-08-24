@@ -135,7 +135,8 @@ const useClock = () => {
     }
 
     useEffect(() => {
-
+        document.title = getClockValue()
+        
         switch (selectedOption) {
             case SELECTED_OPTION.POMODORO:
                 const percent = parseFloat((currentPomodoroTime / pomodoroTime).toFixed(2)) * 100
