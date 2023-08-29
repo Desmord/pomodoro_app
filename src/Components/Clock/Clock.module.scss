@@ -44,6 +44,23 @@
     }
 }
 
+.reset {
+    position: absolute;
+    top: 76%;
+    width: 100%;
+    height: 30px;
+    display: grid;
+    place-content: center;
+    z-index: 5;
+    transition: $transition;
+
+    &:hover{
+        cursor: pointer;
+        color: $color-white;
+        transform: scale(1.05);
+    }
+}
+
 .innerOval {
     position: absolute;
     left: 22px;
@@ -69,9 +86,10 @@
         height: 300px;
     }
 
-    .time{
+    .time {
         font-size: 80px;
     }
+
     .pause {
         font-size: 14px;
     }

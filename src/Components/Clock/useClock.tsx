@@ -134,9 +134,22 @@ const useClock = () => {
 
     }
 
+    const handleReset = () => {
+        
+        if(timerTimeout){
+            clearTimeout(timerTimeout)
+        }
+        
+        drawArc(1);
+        setCurrentPomodoroTime(0);
+        setCurrentShortBreakTime(0);
+        setCurrentLongBreakTime(0);
+        setButtonText(`START`)
+    }
+
     useEffect(() => {
         document.title = getClockValue()
-        
+
         switch (selectedOption) {
             case SELECTED_OPTION.POMODORO:
                 const percent = parseFloat((currentPomodoroTime / pomodoroTime).toFixed(2)) * 100
@@ -208,6 +221,7 @@ const useClock = () => {
         getClockValue,
         handleClick,
         buttonText,
+        handleReset,
     }
 }
 
